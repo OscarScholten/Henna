@@ -11,15 +11,17 @@
   <script src="components/bootstrap/docs/assets/js/bootstrap.js"></script>
   <script src="components/angular/angular.js"></script>
 
+  <script src="js/controllers/connection.js"></script>
   <script src="js/controllers/workspacetree.js"></script>
 </head>
 
 <body>
 
 <div class="row-fluid">
-  <div class="span12 well well-small"><h2>Hippo Henna</h2>
+  <div class="span12 well well-small">
+    <h2>Hippo Henna</h2><div ng-controller="ConnectionCtrl">{{state}}</div>
     <div class="row-fluid">
-      <div class="span3 well well-small" ng-controller="WorkspaceTree">
+      <div class="span3 well well-small" ng-controller="WorkspaceTreeCtrl">
 	<li ng-repeat="item in tree">{{item.name}}</li>
       </div>
       
