@@ -1,0 +1,33 @@
+<!doctype html>
+<html ng-app>
+
+<head>
+  <title>Hippo Henna</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="components/bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet"/>
+  <link href="components/bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet"/>
+
+  <script src="components/jquery/jquery.js"></script>
+  <script src="components/bootstrap/docs/assets/js/bootstrap.js"></script>
+  <script src="components/angular/angular.js"></script>
+
+  <script src="js/controllers/workspacetree.js"></script>
+</head>
+
+<body>
+
+<div class="row-fluid">
+  <div class="span12 well well-small"><h2>Hippo Henna</h2>
+    <div class="row-fluid">
+      <div class="span3 well well-small" ng-controller="WorkspaceTree">
+	<li ng-repeat="item in tree">{{item.name}}</li>
+      </div>
+      
+      <div class="span9 well well-small">ten</div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
