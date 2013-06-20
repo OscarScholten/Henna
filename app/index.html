@@ -1,8 +1,8 @@
 <!doctype html>
-<html ng-app>
+<html ng-app="RestTest">
 
 <head>
-  <title>Hippo Henna</title>
+  <title>REST service test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="components/bootstrap/docs/assets/css/bootstrap.css" rel="stylesheet"/>
   <link href="components/bootstrap/docs/assets/css/bootstrap-responsive.css" rel="stylesheet"/>
@@ -10,19 +10,43 @@
   <script src="components/jquery/jquery.js"></script>
   <script src="components/bootstrap/docs/assets/js/bootstrap.js"></script>
   <script src="components/angular/angular.js"></script>
+  <script src="components/angular-resource/angular-resource.js"></script>
 
-  <script src="js/controllers/connection.js"></script>
-  <script src="js/controllers/workspacetree.js"></script>
+  <script>
+    angular.module('RestTest', ['RestTestFilters', 'WorkspaceServiceModule', 'ngResource']);
+  </script>
+
+  <script src="js/controllers/workspace.js"></script>
+  <script src="js/services/workspaceservice.js"></script>
+  <script src="js/filters.js"></script>
 </head>
 
 <body>
 
+<script type="text/ng-template"  id="tree_item_renderer.html">
+  <a href="#">
+    <i class="{{item.type | typeToIcon}}"></i>{{item.name}}
+  </a>
+  <ul class="nav nav-list">
+    <li ng-repeat="item in item.children" ng-include="'tree_item_renderer.html'"></li>
+  </ul>
+</script>
+
 <div class="row-fluid">
   <div class="span12 well well-small">
-    <h2>Hippo Henna</h2><div ng-controller="ConnectionCtrl">{{state}}</div>
+    <h2>REST service test</h2>
     <div class="row-fluid">
-      <div class="span3 well well-small" ng-controller="WorkspaceTreeCtrl">
-	<li ng-repeat="item in tree">{{item.name}}</li>
+      <div class="span3 well well-small" ng-controller="WorkspaceCtrl">
+	<div class="btn-toolbar">
+	  <div class="btn-group">
+	    <button class="btn" ng-click="addFolder()"><i class="icon-folder-close"></i></button>
+	    <button class="btn" ng-click="addFile()"><i class="icon-file"></i></button>
+	    <button class="btn"><i class="icon-refresh"></i></button>
+	  </div>
+	</div>
+	<ul class="nav nav-list">
+	  <li ng-repeat="item in tree" ng-include="'tree_item_renderer.html'"/>
+	</ul>
       </div>
       
       <div class="span9 well well-small">ten</div>
