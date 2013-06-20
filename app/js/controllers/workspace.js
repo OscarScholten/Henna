@@ -34,7 +34,7 @@ function WorkspaceCtrl($scope, WorkspaceService) {
       currentSelection.selected = false;
     }
 
-    if (item.type === 'folder' || item.type === 'file') {
+    if (item.type === 'folder') {
       $scope.addFileDisabled = false;
       $scope.addFolderDisabled = false;
     } else {
