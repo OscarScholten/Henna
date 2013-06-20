@@ -23,12 +23,14 @@
 
 <body>
 
-<script type="text/ng-template"  id="tree_item_renderer.html">
-  <a href="#">
+<script type="text/ng-template" id="tree_item_renderer.html">
+  <a href="#" ng-click="setSelection(item)">
     <i class="{{item.type | typeToIcon}}"></i>{{item.name}}
   </a>
   <ul class="nav nav-list">
-    <li ng-repeat="item in item.children" ng-include="'tree_item_renderer.html'"></li>
+    <li ng-repeat="item in item.children"
+	ng-class="item.selected | selectedToActive"
+	ng-include="'tree_item_renderer.html'"/>
   </ul>
 </script>
 
@@ -39,13 +41,19 @@
       <div class="span3 well well-small" ng-controller="WorkspaceCtrl">
 	<div class="btn-toolbar">
 	  <div class="btn-group">
-	    <button class="btn" ng-click="addFolder()"><i class="icon-folder-close"></i></button>
-	    <button class="btn" ng-click="addFile()"><i class="icon-file"></i></button>
+	    <button class="btn" ng-disabled="addFolderDisabled" ng-click="addFolder()">
+	      <i class="icon-folder-close"></i>
+	    </button>
+	    <button class="btn" ng-disabled="addFileDisabled" ng-click="addFile()">
+	      <i class="icon-file"></i>
+	    </button>
 	    <button class="btn"><i class="icon-refresh"></i></button>
 	  </div>
 	</div>
 	<ul class="nav nav-list">
-	  <li ng-repeat="item in tree" ng-include="'tree_item_renderer.html'"/>
+	  <li ng-repeat="item in tree"
+	      ng-class="item.selected | selectedToActive"
+	      ng-include="'tree_item_renderer.html'"/>
 	</ul>
       </div>
       
